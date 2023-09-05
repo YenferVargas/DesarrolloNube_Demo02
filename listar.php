@@ -27,7 +27,7 @@ if (!$result) {
 <body>
     <h1>Listado de Registros</h1>
     
-<div class="container">
+    <div class="container">
     <h2>Listado de Registros</h2>
     <table class="table">
         <thead>
@@ -42,20 +42,16 @@ if (!$result) {
         </thead>
         <tbody>
             <?php
-            if ($resultado) {
-                // Recorre los resultados y muestra cada fila en la tabla
-                while ($fila = pg_fetch_assoc($resultado)) {
-                    echo "<tr>";
-                    echo "<td>" . (isset($fila['id']) ? $fila['id'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['nro_documento']) ? $fila['nro_documento'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['nombre']) ? $fila['nombre'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['direccion']) ? $fila['direccion'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['celular']) ? $fila['celular'] : '') . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>No se encontraron registros.</td></tr>";
+            // Recorre los resultados y muestra cada fila en la tabla
+            while ($fila = pg_fetch_assoc($resultado)) {
+                echo "<tr>";
+                echo "<td>" . (isset($fila['id']) ? $fila['id'] : '') . "</td>";
+                echo "<td>" . (isset($fila['nro_documento']) ? $fila['nro_documento'] : '') . "</td>";
+                echo "<td>" . (isset($fila['nombre']) ? $fila['nombre'] : '') . "</td>";
+                echo "<td>" . (isset($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>";
+                echo "<td>" . (isset($fila['direccion']) ? $fila['direccion'] : '') . "</td>";
+                echo "<td>" . (isset($fila['celular']) ? $fila['celular'] : '') . "</td>";
+                echo "</tr>";
             }
             ?>
         </tbody>
