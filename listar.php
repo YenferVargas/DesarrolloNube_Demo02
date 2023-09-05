@@ -26,29 +26,36 @@ if (!$result) {
 </head>
 <body>
     <h1>Listado de Registros</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nro Documento</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Dirección</th>
-            <th>Celular</th>
-        </tr>
-        <?php
-        // Recorre los resultados y muestra cada fila en la tabla
-        while ($row = pg_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['nro_documento'] . "</td>";
-            echo "<td>" . $row['nombre'] . "</td>";
-            echo "<td>" . $row['apellidos'] . "</td>";
-            echo "<td>" . $row['direccion'] . "</td>";
-            echo "<td>" . $row['celular'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
+    <div class="container">
+    <h2>Listado de Registros</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nro Documento</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Recorre los resultados y muestra cada fila en la tabla
+            while ($fila = pg_fetch_assoc($resultado)) {
+                echo "<tr>";
+                echo "<td>" . (isset($fila['id']) ? $fila['id'] : '') . "</td>";
+                echo "<td>" . (isset($fila['nro_documento']) ? $fila['nro_documento'] : '') . "</td>";
+                echo "<td>" . (isset($fila['nombre']) ? $fila['nombre'] : '') . "</td>";
+                echo "<td>" . (isset($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>";
+                echo "<td>" . (isset($fila['direccion']) ? $fila['direccion'] : '') . "</td>";
+                echo "<td>" . (isset($fila['celular']) ? $fila['celular'] : '') . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
     </table>
+</div>
 </body>
 </html>
 
