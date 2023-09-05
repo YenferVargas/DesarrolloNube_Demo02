@@ -24,6 +24,7 @@
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="#">Registrar</a>
         <a class="p-2 text-dark" href="#">Actualizar</a>
+        <a class="p-2 text-dark" href="listar.php">Listar</a>
         <a class="p-2 text-dark" href="#">Eliminar</a>
       </nav>
     </div>
