@@ -26,6 +26,7 @@ if (!$result) {
 </head>
 <body>
     <h1>Listado de Registros</h1>
+    <h1>Listado de Registros</h1>
     <table>
         <tr>
             <th>ID</th>
