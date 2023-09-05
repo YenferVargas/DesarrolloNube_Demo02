@@ -1,19 +1,12 @@
 <?php
-// Incluye la función de conexión a la base de datos
 include("conexion.php");
-
-// Establece la conexión
 $con = conexion();
 
-// Realiza la consulta para obtener los registros de la tabla persona
-$query = "SELECT * FROM persona";
+$consulta = "SELECT * FROM persona";
+$resultado = pg_query($con, $consulta);
 
-// Ejecuta la consulta
-$result = pg_query($con, $query);
-
-// Verifica si la consulta fue exitosa
-if (!$result) {
-    die("Error al realizar la consulta.");
+if (!$resultado) {
+    die("Error al ejecutar la consulta: " . pg_last_error($con));
 }
 ?>
 
@@ -21,14 +14,11 @@ if (!$result) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Registros</title>
 </head>
 <body>
     <h1>Listado de Registros</h1>
-    <div class="container">
-    <h2>Listado de Registros</h2>
-    <table class="table">
+    <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -41,29 +31,18 @@ if (!$result) {
         </thead>
         <tbody>
             <?php
-            if ($resultado) {
-                // Recorre los resultados y muestra cada fila en la tabla
-                while ($fila = pg_fetch_assoc($resultado)) {
-                    echo "<tr>";
-                    echo "<td>" . (isset($fila['id']) ? $fila['id'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['nro_documento']) ? $fila['nro_documento'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['nombre']) ? $fila['nombre'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['direccion']) ? $fila['direccion'] : '') . "</td>";
-                    echo "<td>" . (isset($fila['celular']) ? $fila['celular'] : '') . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>No se encontraron registros.</td></tr>";
+            while ($fila = pg_fetch_assoc($resultado)) {
+                echo "<tr>";
+                echo "<td>" . $fila['id'] . "</td>";
+                echo "<td>" . $fila['nro_documento'] . "</td>";
+                echo "<td>" . $fila['nombre'] . "</td>";
+                echo "<td>" . $fila['apellidos'] . "</td>";
+                echo "<td>" . $fila['direccion'] . "</td>";
+                echo "<td>" . $fila['celular'] . "</td>";
+                echo "</tr>";
             }
             ?>
         </tbody>
     </table>
-</div>
 </body>
 </html>
-
-<?php
-// Cierra la conexión a la base de datos
-pg_close($con);
-?>
